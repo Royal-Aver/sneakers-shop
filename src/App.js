@@ -7,7 +7,12 @@ import Header from './components/Header/Header';
 import Drawer from './components/Drawer/Drawer';
 
 
-const App = () => {
+
+
+const App = (props) => {
+debugger
+  let cardElements = props.state.card.map(card  => <Card cardImg={card.cardImg} cardTitle={card.cardTitle} cardPrice={card.cardPrice} />)
+
   return (
     <div className="wrapper">
       <Drawer />
@@ -23,27 +28,7 @@ const App = () => {
             </div>
 
             <ul className='shop__list'>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
-              <li className='shop__item'>
-                <Card />
-              </li>
+                {cardElements}
             </ul>
           </div>
         </div>
