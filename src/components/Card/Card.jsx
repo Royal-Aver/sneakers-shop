@@ -1,15 +1,30 @@
 import React from "react"
 import './Card.scss'
+import plusImg from './../../images/card/Add.svg'
+import checkedImg from './../../images/card/Add-link.svg'
+import hearthLinkImg from './../../images/card/hearth-link.svg'
+import hearthUnlinkImg from './../../images/card/hearth-unlink.svg'
 
 const Card = (props) => {
 
-  const onButtonPlus = () => {
-    alert('Ты добавил этот товар в корзину')
+  const [isAdd, setIsAdd] = React.useState(false)
+
+  const onClickAdd = () => {
+    setIsAdd(!isAdd);
+  }
+
+  const[isLink, setIsLink] = React.useState(false)
+
+  const onClickLink = () => {
+    setIsLink(!isLink);
   }
 
   return (
     <li className='shop__item'>
       <article className='shop__card card'>
+        <button className="card__btn-hearth" onClick={onClickLink} type="button">
+          <img src={isLink ? hearthLinkImg : hearthUnlinkImg}></img>
+        </button>
         <img className='card__img' src={props.cardImg} alt="sneakers"></img>
         <h5 className='card__title'>{props.cardTitle}</h5>
         <div className='card__wrapper-price'>
@@ -17,12 +32,10 @@ const Card = (props) => {
             <span className='price__text'>price</span>
             <span className='price__num'>{props.cardPrice}$</span>
           </div>
-          <button className='card__btn' onClick={onButtonPlus}>
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="white" stroke="#F2F2F2" />
-              <path d="M20.6653 15.1312H17.2021V11.6682C17.2021 10.3328 15.1311 10.3328 15.1311 11.6682V15.1312H11.668C10.3329 15.1312 10.3329 17.2022 11.668 17.2022H15.1311V20.6652C15.1311 22.0005 17.2021 22.0005 17.2021 20.6652V17.2022H20.6653C22.0005 17.2022 22.0005 15.1312 20.6653 15.1312Z" fill="#D3D3D3" />
-            </svg>
+          <button className='card__btn-plus' onClick={onClickAdd} type="button">
+            <img  src={isAdd ? checkedImg : plusImg}></img>
           </button>
+
         </div>
       </article>
     </li>

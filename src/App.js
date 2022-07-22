@@ -5,19 +5,19 @@ import './components/container.scss';
 import Card from './components/Card/Card';
 import Header from './components/Header/Header';
 import Drawer from './components/Drawer/Drawer';
-
-
+import React from 'react';
 
 
 const App = (props) => {
-debugger
-  let cardElements = props.state.card.map(card  => <Card cardImg={card.cardImg} cardTitle={card.cardTitle} cardPrice={card.cardPrice} />)
+  let cardElements = props.state.card.map(card => <Card cardImg={card.cardImg} cardTitle={card.cardTitle} cardPrice={card.cardPrice} />)
+
+  const [cartOpened, setCartOpened] = React.useState(false)
 
   return (
     <div className="wrapper">
-      <Drawer />
+      {cartOpened && <Drawer onClosedCart={() => setCartOpened(false)} />}
       <div className='wrapper__main main'>
-        <Header />
+        <Header onClickCart={() => setCartOpened(true)} />
         <div className='main__shop shop'>
           <div className='shop__container container'>
             <div className='shop__header'>
@@ -28,7 +28,7 @@ debugger
             </div>
 
             <ul className='shop__list'>
-                {cardElements}
+              {cardElements}
             </ul>
           </div>
         </div>

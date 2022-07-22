@@ -4,11 +4,16 @@
   border-radius: 40px;
   padding: 30px;
   transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
+  position: relative;
 
   &:hover {
     box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
     transform: translateY(-5px);
   }
+}
+
+.card__btn-hearth {
+  position: absolute;
 }
 
 .card__img {
